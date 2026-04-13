@@ -1,0 +1,80 @@
+database:
+  engine: postgres
+  host: localhost
+  port: 5432
+  dbname: DatagenDB
+  user: postgres
+  password: Lera
+  schema: banking
+generation:
+  batch_size: 10000
+  max_workers: 4
+  null_probability: 0.05
+  output_dir: ./output
+  seed: 42
+loader:
+  disable_indexes: true
+  disable_fk_checks: true
+logging:
+  app_log: logs/app.log
+  error_log: logs/error.log
+  audit_log: logs/audit.log
+  level: INFO
+anchor_entities:
+  tstg_company: 5
+  tstg_customer: 300
+  tstg_account: 600
+  tstg_aa_arrangement: 300
+  tstg_currency: 20
+ratios:
+  tstg_account_details:
+    parent: tstg_account
+    ratio: 1
+  tstg_aa_accountdetail:
+    parent: tstg_aa_arrangement
+    ratio: 1
+  tstg_aa_accountdetail_details:
+    parent: tstg_aa_accountdetail
+    ratio: 1
+  tstg_aa_arrangement_activity:
+    parent: tstg_aa_arrangement
+    ratio: 10
+  tstg_aa_arrangement_activity_details:
+    parent: tstg_aa_arrangement_activity
+    ratio: 1
+  tstg_aa_arrangement_details:
+    parent: tstg_aa_arrangement
+    ratio: 1
+  tstg_atm_transaction:
+    parent: tstg_account
+    ratio: 20
+  tstg_atm_transaction_details:
+    parent: tstg_atm_transaction
+    ratio: 1
+  tstg_category:
+    parent: tstg_company
+    ratio: 1
+  tstg_collateral:
+    parent: tstg_company
+    ratio: 5
+  tstg_company_details:
+    parent: tstg_company
+    ratio: 1
+  tstg_country:
+    parent: tstg_company
+    ratio: 5
+  tstg_currency_details:
+    parent: tstg_currency
+    ratio: 1
+  tstg_customer_details:
+    parent: tstg_customer
+    ratio: 1
+  tstg_dates:
+    parent: tstg_company
+    ratio: 1
+  tstg_dept_acct_officer:
+    parent: tstg_company
+    ratio: 1
+  tstg_eb_contract_balances:
+    parent: tstg_collateral
+    ratio: 1

@@ -1,0 +1,563 @@
+{
+  "info": {
+    "name": "Synthetic Data Generation API",
+    "description": "Synthetic Data Generation API \u2014 v2.1\n\n## Security\n- The Groq API key is configured **server-side only** via the `GROQ_API_KEY` env var.\n  It is never sent in any request body.\n- The `X-API-Key` header is optional. Enable it only if `API_SECRET_KEY` is set on the server.\n\n## Quick Start\n1. Start server: `python auto_pipeline.py --serve`\n2. Set `base_url` collection variable to `http://localhost:8000`\n3. Run **Health Check** \u2014 confirm `groq_key_configured: true`\n4. Run **Test Connection** \u2014 confirm DB is reachable\n5. Run **Run Pipeline (Async)** \u2014 job_id is saved automatically\n6. Run **Get Job Status** \u2014 poll until `status: completed`",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "version": "2.0.0"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000",
+      "type": "string"
+    },
+    {
+      "key": "job_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "api_secret_key",
+      "value": "",
+      "description": "Set this only if the server has API_SECRET_KEY configured. Leave blank for local dev.",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "System",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/health",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "health"
+              ]
+            },
+            "description": "Check API health and version info."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Schema",
+      "item": [
+        {
+          "name": "Test Connection \u2014 PostgreSQL",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-API-Key",
+                "value": "{{api_secret_key}}",
+                "description": "Optional \u2014 only required if API_SECRET_KEY is set on the server",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"database\": {\n    \"engine\": \"postgres\",\n    \"host\": \"localhost\",\n    \"port\": 5432,\n    \"dbname\": \"DatagenDB\",\n    \"user\": \"postgres\",\n    \"password\": \"yourpassword\",\n    \"schema\": \"banking\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/schema/test-connection",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "schema",
+                "test-connection"
+              ]
+            },
+            "description": "Test PostgreSQL connection."
+          }
+        },
+        {
+          "name": "Test Connection \u2014 Oracle",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-API-Key",
+                "value": "{{api_secret_key}}",
+                "description": "Optional \u2014 only required if API_SECRET_KEY is set on the server",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"database\": {\n    \"engine\": \"oracle\",\n    \"host\": \"localhost\",\n    \"port\": 1521,\n    \"service_name\": \"ORCL\",\n    \"dbname\": \"ORCL\",\n    \"user\": \"system\",\n    \"password\": \"yourpassword\",\n    \"schema\": \"BANKING\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/schema/test-connection",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "schema",
+                "test-connection"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Test Connection \u2014 SQL Server",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-API-Key",
+                "value": "{{api_secret_key}}",
+                "description": "Optional \u2014 only required if API_SECRET_KEY is set on the server",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"database\": {\n    \"engine\": \"sqlserver\",\n    \"host\": \"localhost\",\n    \"port\": 1433,\n    \"dbname\": \"DatagenDB\",\n    \"user\": \"sa\",\n    \"password\": \"yourpassword\",\n    \"schema\": \"dbo\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/schema/test-connection",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "schema",
+                "test-connection"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Test Connection \u2014 MySQL",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-API-Key",
+                "value": "{{api_secret_key}}",
+                "description": "Optional \u2014 only required if API_SECRET_KEY is set on the server",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"database\": {\n    \"engine\": \"mysql\",\n    \"host\": \"localhost\",\n    \"port\": 3306,\n    \"dbname\": \"DatagenDB\",\n    \"user\": \"root\",\n    \"password\": \"yourpassword\",\n    \"schema\": \"DatagenDB\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/schema/test-connection",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "schema",
+                "test-connection"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Read Schema",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-API-Key",
+                "value": "{{api_secret_key}}",
+                "description": "Optional \u2014 only required if API_SECRET_KEY is set on the server",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"database\": {\n    \"engine\": \"postgres\",\n    \"host\": \"localhost\",\n    \"port\": 5432,\n    \"dbname\": \"DatagenDB\",\n    \"user\": \"postgres\",\n    \"password\": \"yourpassword\",\n    \"schema\": \"banking\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/schema/read",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "schema",
+                "read"
+              ]
+            },
+            "description": "Read schema metadata (tables, columns, PKs, FKs) without generating data."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Pipeline",
+      "item": [
+        {
+          "name": "Run Pipeline \u2014 Synchronous (PostgreSQL)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-API-Key",
+                "value": "{{api_secret_key}}",
+                "description": "Optional \u2014 only required if API_SECRET_KEY is set on the server",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"database\": {\n    \"engine\": \"postgres\",\n    \"host\": \"localhost\",\n    \"port\": 5432,\n    \"dbname\": \"DatagenDB\",\n    \"user\": \"postgres\",\n    \"password\": \"yourpassword\",\n    \"schema\": \"banking\"\n  },\n  \"model\": \"llama-3.3-70b-versatile\",\n  \"batch_size\": 10000,\n  \"null_probability\": 0.05,\n  \"seed\": 42,\n  \"dry_run\": false\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/pipeline/run",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "pipeline",
+                "run"
+              ]
+            },
+            "description": "Run full pipeline synchronously. Waits for completion.\nUse /run-async for large datasets."
+          }
+        },
+        {
+          "name": "Run Pipeline \u2014 Async (returns job_id)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var response = pm.response.json();",
+                  "if (response.job_id) {",
+                  "  pm.collectionVariables.set('job_id', response.job_id);",
+                  "  console.log('Job ID saved:', response.job_id);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-API-Key",
+                "value": "{{api_secret_key}}",
+                "description": "Optional \u2014 only required if API_SECRET_KEY is set on the server",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"database\": {\n    \"engine\": \"postgres\",\n    \"host\": \"localhost\",\n    \"port\": 5432,\n    \"dbname\": \"DatagenDB\",\n    \"user\": \"postgres\",\n    \"password\": \"yourpassword\",\n    \"schema\": \"banking\"\n  },\n  \"model\": \"llama-3.3-70b-versatile\",\n  \"batch_size\": 10000,\n  \"null_probability\": 0.05,\n  \"seed\": 42,\n  \"dry_run\": true\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/pipeline/run-async",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "pipeline",
+                "run-async"
+              ]
+            },
+            "description": "Start pipeline in background. Returns job_id immediately.\nAuto-saves job_id to collection variable for polling."
+          }
+        },
+        {
+          "name": "Run Pipeline \u2014 Oracle",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-API-Key",
+                "value": "{{api_secret_key}}",
+                "description": "Optional \u2014 only required if API_SECRET_KEY is set on the server",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"database\": {\n    \"engine\": \"oracle\",\n    \"host\": \"localhost\",\n    \"port\": 1521,\n    \"service_name\": \"ORCL\",\n    \"dbname\": \"ORCL\",\n    \"user\": \"banking_user\",\n    \"password\": \"yourpassword\",\n    \"schema\": \"BANKING\"\n  },\n  \"model\": \"llama-3.3-70b-versatile\",\n  \"batch_size\": 5000,\n  \"seed\": 42,\n  \"dry_run\": false\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/pipeline/run-async",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "pipeline",
+                "run-async"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Run Pipeline \u2014 SQL Server",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-API-Key",
+                "value": "{{api_secret_key}}",
+                "description": "Optional \u2014 only required if API_SECRET_KEY is set on the server",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"database\": {\n    \"engine\": \"sqlserver\",\n    \"host\": \"localhost\",\n    \"port\": 1433,\n    \"dbname\": \"DatagenDB\",\n    \"user\": \"sa\",\n    \"password\": \"yourpassword\",\n    \"schema\": \"dbo\"\n  },\n  \"model\": \"llama-3.3-70b-versatile\",\n  \"batch_size\": 10000,\n  \"seed\": 42,\n  \"dry_run\": false\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/pipeline/run-async",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "pipeline",
+                "run-async"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Run Pipeline \u2014 MySQL",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-API-Key",
+                "value": "{{api_secret_key}}",
+                "description": "Optional \u2014 only required if API_SECRET_KEY is set on the server",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"database\": {\n    \"engine\": \"mysql\",\n    \"host\": \"localhost\",\n    \"port\": 3306,\n    \"dbname\": \"DatagenDB\",\n    \"user\": \"root\",\n    \"password\": \"yourpassword\",\n    \"schema\": \"DatagenDB\"\n  },\n  \"model\": \"llama-3.3-70b-versatile\",\n  \"batch_size\": 10000,\n  \"seed\": 42,\n  \"dry_run\": false\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/pipeline/run-async",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "pipeline",
+                "run-async"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Jobs",
+      "item": [
+        {
+          "name": "Get Job Status",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{api_secret_key}}",
+                "description": "Optional \u2014 only required if API_SECRET_KEY is set on the server",
+                "disabled": true
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/jobs/{{job_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "jobs",
+                "{{job_id}}"
+              ]
+            },
+            "description": "Poll this endpoint after starting an async pipeline run.\nStatus values: queued \u2192 running \u2192 completed | failed | cancelled"
+          }
+        },
+        {
+          "name": "List All Jobs",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{api_secret_key}}",
+                "description": "Optional \u2014 only required if API_SECRET_KEY is set on the server",
+                "disabled": true
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/jobs",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "jobs"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Cancel Job",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "X-API-Key",
+                "value": "{{api_secret_key}}",
+                "description": "Optional \u2014 only required if API_SECRET_KEY is set on the server",
+                "disabled": true
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/jobs/{{job_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "jobs",
+                "{{job_id}}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Scenarios",
+      "item": [
+        {
+          "name": "List Scenarios",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/scenarios",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "scenarios"
+              ]
+            },
+            "description": "List all available business scenarios from scenarios.yaml.\nRun a pipeline first to auto-generate scenarios."
+          }
+        },
+        {
+          "name": "Run Scenario",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-API-Key",
+                "value": "{{api_secret_key}}",
+                "description": "Optional \u2014 only required if API_SECRET_KEY is set on the server",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"database\": {\n    \"engine\": \"postgres\",\n    \"host\": \"localhost\",\n    \"port\": 5432,\n    \"dbname\": \"DatagenDB\",\n    \"user\": \"postgres\",\n    \"password\": \"yourpassword\",\n    \"schema\": \"banking\"\n  },\n  \"scenario_name\": \"stress_test\",\n  \"dry_run\": false\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/scenarios/run",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "scenarios",
+                "run"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

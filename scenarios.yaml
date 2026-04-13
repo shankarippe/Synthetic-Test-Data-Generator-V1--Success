@@ -1,0 +1,64 @@
+scenarios:
+  month_end_close:
+    description: Month-end close with high statement volumes
+    domain: core_banking
+    anchor_overrides:
+      tstg_aa_accountdetail: 5000
+      tstg_atm_transaction: 2000
+    volume_skews:
+      tstg_aa_accountdetail: 1.5
+      tstg_atm_transaction: 3.0
+    column_overrides:
+      tstg_aa_accountdetail:
+        account_status:
+        - active
+        - inactive
+      tstg_atm_transaction:
+        transaction_type:
+        - deposit
+        - withdrawal
+    date_context:
+      reference_date: today
+      date_range_years: 1
+  new_customer_onboarding:
+    description: New customer onboarding batch
+    domain: core_banking
+    anchor_overrides:
+      tstg_account: 1000
+      tstg_aa_arr_account: 500
+    volume_skews:
+      tstg_account: 2.0
+      tstg_aa_arr_account: 1.2
+    column_overrides:
+      tstg_account:
+        customer_type:
+        - individual
+        - corporate
+      tstg_aa_arr_account:
+        account_type:
+        - checking
+        - savings
+    date_context:
+      reference_date: today
+      date_range_years: 0.5
+  loan_default_stress_test:
+    description: Loan default stress test
+    domain: core_banking
+    anchor_overrides:
+      tstg_aa_arrangement: 2000
+      tstg_aa_arrangement_activity: 1000
+    volume_skews:
+      tstg_aa_arrangement: 1.8
+      tstg_aa_arrangement_activity: 2.5
+    column_overrides:
+      tstg_aa_arrangement:
+        arrangement_status:
+        - active
+        - defaulted
+      tstg_aa_arrangement_activity:
+        activity_type:
+        - payment
+        - default
+    date_context:
+      reference_date: today
+      date_range_years: 2

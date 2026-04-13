@@ -1,0 +1,2017 @@
+domain_profile: core_banking
+domains:
+  core_banking:
+    column_patterns:
+      efz_co_code:
+      - '001'
+      - '002'
+      - '003'
+      - '004'
+      t24_load_date:
+      - '2022-01-01 00:00:00'
+      - '2022-01-02 00:00:00'
+      - '2022-01-03 00:00:00'
+      - '2022-01-04 00:00:00'
+      efz_load_date:
+      - '2022-01-01 00:00:00'
+      - '2022-01-02 00:00:00'
+      - '2022-01-03 00:00:00'
+      - '2022-01-04 00:00:00'
+      available_company:
+      - ABC Bank
+      - DEF Financial
+      - GHI Corp
+      - JKL Holdings
+      owning_company:
+      - ABC Bank
+      - DEF Financial
+      - GHI Corp
+      - JKL Holdings
+      available_region:
+      - North
+      - South
+      - East
+      - West
+      prf_property:
+      - High
+      - Medium
+      - Low
+      - Standard
+      prf_prop_control_property:
+      - Strict
+      - Moderate
+      - Lenient
+      - Default
+      cat_property:
+      - Personal
+      - Business
+      - Corporate
+      - Institutional
+      cat_prop_control_property:
+      - Individual
+      - Company
+      - Trust
+      - Partnership
+      status:
+      - ACTIVE
+      - INACTIVE
+      - PENDING
+      - APPROVED
+      type:
+      - SAVINGS
+      - CURRENT
+      - LOAN
+      - INVESTMENT
+      category:
+      - PERSONAL
+      - BUSINESS
+      - CORPORATE
+      - GOVERNMENT
+      quotation_susp:
+      - 'YES'
+      - 'NO'
+      override:
+      - 'YES'
+      - 'NO'
+      inputter:
+      - SYSTEM
+      - USER
+      role_more_info:
+      - PRIMARY
+      - SECONDARY
+      - TERTIARY
+      authoriser:
+      - Manager
+      - Team Lead
+      - Officer
+      - Admin
+      source:
+      - T24
+      - EFZ
+      - CORE
+      - BANK
+      processcompany:
+      - COMPANY1
+      - COMPANY2
+      - COMPANY3
+      - COMPANY4
+      senderinstitutionncc:
+      - NCC1
+      - NCC2
+      - NCC3
+      - NCC4
+      receiverinstitutionncc:
+      - NCC1
+      - NCC2
+      - NCC3
+      - NCC4
+      debitaccountcompany:
+      - COMPANY1
+      - COMPANY2
+      - COMPANY3
+      - COMPANY4
+      system_id:
+      - SYS001
+      - SYS002
+      - SYS003
+      - SYS004
+      add_detail_name:
+      - DETAIL1
+      - DETAIL2
+      - DETAIL3
+      - DETAIL4
+      addl_trans_ref:
+      - REF001
+      - REF002
+      - REF003
+      - REF004
+    suffix_patterns:
+      _status:
+      - LIVE
+      - INACT
+      - PEND
+      - HISTORY
+      _type:
+      - STANDARD
+      - PREMIUM
+      - CORPORATE
+      - RETAIL
+      _code: null
+      _flag:
+      - Y
+      - N
+      _ind:
+      - Y
+      - N
+      _indicator:
+      - Y
+      - N
+      _method:
+      - STANDARD
+      - MANUAL
+      - AUTO
+      - BATCH
+      _channel:
+      - INTERNET
+      - MOBILE
+      - BRANCH
+      - ATM
+      - API
+      _currency:
+      - USD
+      - EUR
+      - GBP
+      - JPY
+      - CHF
+      - SGD
+      - AED
+      _country:
+      - GB
+      - US
+      - DE
+      - FR
+      - SG
+      - AE
+      - IN
+      - CN
+      _ccy:
+      - USD
+      - EUR
+      - GBP
+      - JPY
+      - CHF
+      - SGD
+      - AED
+      _basis:
+      - A
+      - M
+      - D
+      _frequency:
+      - DAILY
+      - MONTHLY
+      - QUARTERLY
+      - ANNUAL
+    substring_patterns: {}
+    table_prefix_overrides:
+      tstg_aa_accountdetail:
+        renewal_date: &id002
+        - 'YES'
+        - 'NO'
+        arr_age_status: &id001
+        - LIVE
+        - INACT
+        - PEND
+        - HISTORY
+        - REVERSED
+        all_age_status: *id001
+        arr_dormancy_status: *id001
+        overdraft_status: *id001
+        commitment_status: *id001
+        cur_restructure_status: *id001
+        rollover_status: *id001
+        renewal_period: *id002
+        ias_classification:
+        - Current
+        - Savings
+        - Loan
+        - Credit Card
+        risk_stage:
+        - Low
+        - Medium
+        - High
+        - Very High
+        takeover_arr:
+        - 'Yes'
+        - 'No'
+        - Pending
+        - Declined
+        branch:
+        - Main Branch
+        - Downtown Branch
+        - Uptown Branch
+        - Suburban Branch
+        line_of_business:
+        - Retail
+        - Corporate
+        - Investment
+        - Private Banking
+        efz_co_code:
+        - '001'
+        - '002'
+        - '003'
+        - '004'
+      tstg_aa_accountdetail_details:
+        bill_type: &id003
+        - INDIVIDUAL
+        - CORPORATE
+        - BANK
+        - GOVERNMENT
+        - TRUST
+        - NGO
+        - FUND
+        - INSURANCE
+        bill_status: *id001
+        set_status: *id001
+        aging_status: *id001
+        schedule_type: *id003
+        susp_status: *id001
+        hol_payment_type: *id003
+        hol_bill_type: *id003
+        dormancy_status: *id001
+        int_statement_type: *id003
+        rule_status_type: *id003
+        rule_status: *id001
+        manual_age_bill_type: *id003
+        age_event_status: *id001
+        age_all_bill_type: *id003
+        age_all_status: *id001
+        pay_method:
+        - Cash
+        - Credit Card
+        - Debit Card
+        - Bank Transfer
+        bill_id:
+        - INV001
+        - INV002
+        - INV003
+        - INV004
+      tstg_aa_arr_account:
+        category: &id017
+        - '1000'
+        - '1001'
+        - '2000'
+        - '2001'
+        - '4000'
+        currency_market: &id004
+        - USD
+        - EUR
+        - GBP
+        - JPY
+        - CHF
+        - AUD
+        - CAD
+        - SGD
+        - HKD
+        - NZD
+        - SEK
+        - NOK
+        - DKK
+        - ZAR
+        - AED
+        - SAR
+        - QAR
+        - KWD
+        - BHD
+        - OMR
+        - INR
+        - PKR
+        - BDT
+        - LKR
+        - NPR
+        - MYR
+        - THB
+        - IDR
+        - PHP
+        - VND
+        - CNY
+        - KRW
+        - NGN
+        - KES
+        - GHS
+        - TZS
+        - UGX
+        - ZMW
+        - MWK
+        - RWF
+        position_type: *id003
+        base_date_type: *id003
+        multi_currency: *id004
+        hvt_flag: &id008
+        - Y
+        - N
+        alt_id_type: *id003
+        csd_cheque_type: *id003
+        nr_type: *id003
+        csd_sub_sector: &id005
+        - '1000'
+        - '1001'
+        - '1100'
+        - '1101'
+        - '1200'
+        - '1201'
+        - '1300'
+        - '1400'
+        - '2000'
+        - '2001'
+        - '2100'
+        - '3000'
+        - '3001'
+        - '4000'
+        - '5000'
+        - '9000'
+        csd_sector: *id005
+        accounting_company:
+        - ABC Corp
+        - DEF Inc
+        - GHI Ltd
+        - JKL Corp
+        owning_company:
+        - ABC Holdings
+        - DEF Group
+        - GHI Investments
+        - JKL Ventures
+        date_convention:
+        - Actual/Actual
+        - 30/360
+        - Actual/360
+        - 30/Actual
+        balance_treatment:
+        - Included
+        - Excluded
+        - Netted
+        - Grossed
+        bundle_arrangement:
+        - 'Yes'
+        - 'No'
+        - Pending
+        - Declined
+      tstg_aa_arr_account_details:
+        alt_id_type: *id003
+        nr_type: *id003
+        apr_type: *id003
+        action:
+        - Create
+        - Update
+        - Delete
+        - Inquire
+        posting_restrict:
+        - None
+        - Partial
+        - Full
+        - Temporary
+      tstg_aa_arrangement:
+        product_line: &id006
+        - DEPOSITS
+        - LOANS
+        - TRADE
+        - TREASURY
+        - FOREX
+        - PAYMENTS
+        - CARDS
+        - MORTGAGES
+        - LEASING
+        - ISLAMIC
+        product_group: *id006
+        arrangement_type: *id003
+        arr_status: *id001
+        master_ccy: *id004
+        active_product: *id006
+        product_status: *id001
+        active_channel: &id007
+        - INTERNET
+        - MOBILE
+        - BRANCH
+        - ATM
+        - API
+        - TELLER
+        - IVR
+        offset_type: *id003
+        master_type: *id003
+        group_level: &id009
+        - STANDARD
+        - PREMIUM
+        - CORPORATE
+        - RETAIL
+        - SME
+        - WHOLESALE
+        link_type: *id003
+        linked_balance_type: *id003
+        linked_source_calc_type: *id003
+        channel: *id007
+        dept_officer_name: &id013
+        - '100001'
+        - '100002'
+        - '100003'
+        - '100004'
+        - '100005'
+        - '100006'
+        - '100007'
+        - '100008'
+        - '100009'
+        - '100010'
+        - '100011'
+        - '100012'
+        - '100013'
+        - '100014'
+        - '100015'
+        - '100016'
+        - '100017'
+        - '100018'
+        - '100019'
+        - '100020'
+        - '100021'
+        - '100022'
+        - '100023'
+        - '100024'
+        - '100025'
+        - '100026'
+        - '100027'
+        - '100028'
+        - '100029'
+        - '100030'
+        - '100031'
+        - '100032'
+        - '100033'
+        - '100034'
+        - '100035'
+        - '100036'
+        - '100037'
+        - '100038'
+        - '100039'
+        - '100040'
+        - '100041'
+        - '100042'
+        - '100043'
+        - '100044'
+        - '100045'
+        - '100046'
+        - '100047'
+        - '100048'
+        - '100049'
+        sector_name: *id005
+        master_arrangement:
+        - Master Account
+        - Sub Account
+        - Linked Account
+        - Joint Account
+        sub_arrangement:
+        - Sub Account
+        - Master Account
+        - Linked Account
+        - Joint Account
+        link_arrangement:
+        - 'Yes'
+        - 'No'
+        - Pending
+        - Declined
+        closure_reason:
+        - Closed by Customer
+        - Closed by Bank
+        - Merged with Another Account
+        - Dormant Account
+        plan_select_method:
+        - Manual
+        - Automatic
+        - Semi-Automatic
+        - Default
+      tstg_aa_arrangement_activity:
+        active_channel: *id007
+        product_line: *id006
+        product_group: *id006
+        product_key: *id006
+        adj_status: *id001
+        initiation_type: *id003
+        activity_link_type: *id003
+        activity:
+        - Deposit
+        - Withdrawal
+        - Transfer
+        - Payment
+        authoriser:
+        - Manager
+        - Team Leader
+        - Officer
+        - Teller
+        inputter:
+        - Teller
+        - Officer
+        - Team Leader
+        - Manager
+      tstg_aa_arrangement_activity_details:
+        initiation_type: *id003
+        adj_status: *id001
+        override_flag: *id008
+        activity_link_type: *id003
+        customer_role:
+        - Account Holder
+        - Authorized Signatory
+        - Beneficial Owner
+        - ' Guarantor'
+        adj_activity:
+        - 'Yes'
+        - 'No'
+        - Pending
+        - Declined
+      tstg_aa_arrangement_details:
+        product: *id006
+      tstg_aa_product:
+        product_group: *id006
+        product_status: *id001
+        product_integrity: *id006
+        group_level: *id009
+        epp_product_group: *id006
+        available_country: &id010
+        - GB
+        - US
+        - DE
+        - FR
+        - CH
+        - SG
+        - AE
+        - SA
+        - QA
+        - KW
+        - IN
+        - CN
+        - JP
+        - AU
+        - CA
+        - NG
+        - KE
+        - ZA
+        - GH
+        - TZ
+        - MY
+        - TH
+        - ID
+        - PH
+        - VN
+        - BH
+        - OM
+        - EG
+        - MA
+        - TN
+        available_company:
+        - ABC Bank
+        - DEF Financial
+        - GHI Corp
+        - JKL Holdings
+        owning_company:
+        - ABC Bank
+        - DEF Financial
+        - GHI Corp
+        - JKL Holdings
+        available_region:
+        - North
+        - South
+        - East
+        - West
+        prf_property:
+        - High
+        - Medium
+        - Low
+        - Standard
+        prf_prop_control_property:
+        - Strict
+        - Moderate
+        - Lenient
+        - Default
+        cat_property:
+        - Personal
+        - Business
+        - Corporate
+        - Institutional
+        cat_prop_control_property:
+        - Individual
+        - Company
+        - Trust
+        - Partnership
+      tstg_aa_product_details:
+        product_error: *id006
+        available_country: *id010
+        available_company:
+        - ABC Bank
+        - DEF Financial
+        - GHI Corp
+        - JKL Holdings
+        owning_company:
+        - ABC Bank
+        - DEF Financial
+        - GHI Corp
+        - JKL Holdings
+        available_region:
+        - North
+        - South
+        - East
+        - West
+        prf_property:
+        - High
+        - Medium
+        - Low
+        - Standard
+        prf_prop_control_property:
+        - Strict
+        - Moderate
+        - Lenient
+        - Default
+        cat_property:
+        - Personal
+        - Business
+        - Corporate
+        - Institutional
+        cat_prop_control_property:
+        - Individual
+        - Company
+        - Trust
+        - Partnership
+        remedy:
+        - Replace
+        - Repair
+        - Refund
+        - Waive
+      tstg_ac_charge_request:
+        request_type: *id003
+        charge_ccy: *id004
+        swift_to_raise: &id011
+        - MIDLGB22
+        - BARCGB22
+        - HSBCGB2L
+        - NATXGB21
+        - LOYDGB2L
+        - DEUTDEDB
+        - BNPAFRPP
+        - UBSWCHZH
+        - CITITGR2
+        - CITIUS33
+        - CHASUS33
+        - BOFAUS3N
+        - WFBIUS6S
+        - RBOSGB2L
+        - SCBLSGSG
+        - OCBCSGSG
+        - UOBBSGSG
+        - DBSSSGSG
+        - MASHB2B2
+        - NBADAEAA
+        ord_inst_type: *id003
+        acct_with_type: *id003
+        status: *id001
+        csd_channelid: *id007
+        csd_req_type: *id003
+        csd_trans_type: *id003
+        receiver_bic: *id011
+        record_status: *id001
+        co_code: &id012
+        - GB0010001
+        - US0010001
+        - SG0010001
+        - AE0010001
+        - NG0010001
+        dept_code: &id016
+        - '1000'
+        - '1001'
+        - '1002'
+        - '1003'
+        - '1004'
+        - '1005'
+        - '1006'
+        - '1007'
+        - '1008'
+        - '1009'
+        - '1010'
+        - '1011'
+        - '1012'
+        - '1013'
+        - '1014'
+        - '1015'
+        - '1016'
+        - '1017'
+        - '1018'
+        - '1019'
+        debit_account:
+        - Checking
+        - Savings
+        - Credit Card
+        - Loan
+        customer_no:
+        - Individual
+        - Company
+        - Trust
+        - Partnership
+        related_ref:
+        - Transaction
+        - Account
+        - Customer
+        - Product
+        msg_series:
+        - High Priority
+        - Medium Priority
+        - Low Priority
+        - Standard
+        sender_detail:
+        - Bank
+        - Customer
+        - Third Party
+        - System
+        csd_requestid:
+        - New
+        - Update
+        - Delete
+        - Inquire
+        txn_reference:
+        - Debit
+        - Credit
+        - Transfer
+        - Adjustment
+        reserved3:
+        - 'Yes'
+        - 'No'
+        - Pending
+        - Approved
+        reserved4:
+        - Active
+        - Inactive
+        - Pending
+        - Closed
+        reserved5:
+        - High
+        - Medium
+        - Low
+        - Standard
+        reserved6:
+        - Individual
+        - Company
+        - Trust
+        - Partnership
+        reserved7:
+        - Bank
+        - Customer
+        - Third Party
+        - System
+        reserved8:
+        - New
+        - Update
+        - Delete
+        - Inquire
+        reserved9:
+        - Debit
+        - Credit
+        - Transfer
+        - Adjustment
+      tstg_ac_charge_request_details:
+        co_code: *id012
+        charge_code: &id014
+        - ACHARGE
+        - BCHARGE
+        - CCHARGE
+        - SERVICE
+        - ADMIN
+        - PROCESS
+        - COMMISSION
+        - STAMP
+        - DUTY
+        hist_status: *id001
+        status_date: *id001
+        efz_co_code:
+        - ABC
+        - DEF
+        - GHI
+        - JKL
+        tax_code:
+        - VAT
+        - Sales Tax
+        - Income Tax
+        - Withholding Tax
+        ordering_inst:
+        - Bank
+        - Customer
+        - Third Party
+        - System
+        acct_with_bank:
+        - 'Yes'
+        - 'No'
+        - Pending
+        - Approved
+        sender_info:
+        - Bank
+        - Customer
+        - Third Party
+        - System
+        send_notice:
+        - 'Yes'
+        - 'No'
+        - Pending
+        - Approved
+        csd_keyfactor:
+        - High
+        - Medium
+        - Low
+        - Standard
+        activity_code:
+        - Debit
+        - Credit
+        - Transfer
+        - Adjustment
+        mapping_key:
+        - Individual
+        - Company
+        - Trust
+        - Partnership
+        delivery_ref:
+        - Email
+        - Mail
+        - Fax
+        - In Person
+        stmt_nos:
+        - Monthly
+        - Quarterly
+        - Annually
+        - On Demand
+      tstg_ac_locked_events:
+        payment_ccy: *id004
+        locked_type: *id003
+        record_status: *id001
+        status: *id001
+        account_number:
+        - Checking
+        - Savings
+        - Credit Card
+        - Loan
+      tstg_account:
+        transaction_code: &id018
+        - AC
+        - DR
+        - IN
+        - CH
+        - FE
+        - RP
+        - DS
+        - CL
+        - OD
+        - FX
+        status: *id001
+        account_seq_no:
+        - Individual
+        - Company
+        - Trust
+        - Partnership
+        created_by_user_id:
+        - Bank
+        - Customer
+        - Third Party
+        - System
+        customer:
+        - Individual
+        - Company
+        - Trust
+        - Partnership
+        prod_code:
+        - Checking
+        - Savings
+        - Credit Card
+        - Loan
+        account_title_1:
+        - Personal
+        - Business
+        - Corporate
+        - Institutional
+        limit_ref:
+        - High
+        - Medium
+        - Low
+        - Standard
+        alternate_acct:
+        - 'Yes'
+        - 'No'
+        - Pending
+        - Approved
+        limit_key:
+        - Debit
+        - Credit
+        - Transfer
+        - Adjustment
+        arrangement_id:
+        - Individual
+        - Company
+        - Trust
+        - Partnership
+      tstg_account_details:
+        other_officer: *id013
+        int_liqu_type: *id003
+        int_liq_ccy: *id004
+        alt_acct_type: *id003
+        premium_type: *id003
+        ic_product: *id006
+        account_title_1:
+        - Personal
+        - Business
+        - Corporate
+        - Institutional
+        account_title_2:
+        - Primary
+        - Secondary
+        - Tertiary
+        - Quaternary
+        short_title:
+        - 'Yes'
+        - 'No'
+        - Pending
+        - Approved
+        posting_restrict:
+        - High
+        - Medium
+        - Low
+        - Standard
+        referal_code:
+        - Individual
+        - Company
+        - Trust
+        - Partnership
+        accr_chg_categ:
+        - Debit
+        - Credit
+        - Transfer
+        - Adjustment
+        accr_chg_trans:
+        - High
+        - Medium
+        - Low
+        - Standard
+        accr_chg_susp:
+        - 'Yes'
+        - 'No'
+        - Pending
+        - Approved
+        accr_cr_categ:
+        - Debit
+        - Credit
+        - Transfer
+        - Adjustment
+        accr_cr_trans:
+        - High
+        - Medium
+        - Low
+        - Standard
+        accr_cr_susp:
+        - 'Yes'
+        - 'No'
+        - Pending
+        - Approved
+        accr_cr2_categ:
+        - Debit
+        - Credit
+        - Transfer
+        - Adjustment
+      tstg_atm_transaction:
+        currency_market: *id004
+        network_type: *id003
+        txn_type: *id003
+        trans_status: *id001
+        reversal_flag: *id008
+        charge_code: *id014
+        record_status: *id001
+        department_code:
+        - CORP
+        - RETAIL
+        - COMM
+        - TREAS
+        atm_or_pos:
+        - ATM
+        - POS
+        merchant_id:
+        - MERC001
+        - MERC002
+        - MERC003
+        - MERC004
+        proc_code:
+        - '0100'
+        - '0200'
+        - '0300'
+        - '0400'
+        mti_code:
+        - '0100'
+        - '0200'
+        - '0300'
+        - '0400'
+        bin_reference:
+        - BIN001
+        - BIN002
+        - BIN003
+        - BIN004
+      tstg_atm_transaction_details:
+        charge_code: *id014
+        chrg_cr_acct:
+        - SAV001
+        - CUR002
+        - LOA003
+        - INV004
+        chrg_cr_txn_code:
+        - CRED
+        - DEBT
+        - FEE
+        - INT
+        mti_code:
+        - '0100'
+        - '0200'
+        - '0300'
+        - '0400'
+        chrg_debit_ac:
+        - SAV001
+        - CUR002
+        - LOA003
+        - INV004
+        chrg_credit_ac:
+        - SAV001
+        - CUR002
+        - LOA003
+        - INV004
+        efz_co_code:
+        - CO001
+        - CO002
+        - CO003
+        - CO004
+      tstg_category:
+        record_status: *id001
+        position_type: *id003
+        mnemonic:
+        - CAT001
+        - CAT002
+        - CAT003
+        - CAT004
+        short_name:
+        - SAV
+        - CUR
+        - LOA
+        - INV
+      tstg_collateral:
+        collateral_type: &id015
+        - CASH
+        - PROPERTY
+        - SHARES
+        - BONDS
+        - VEHICLE
+        - GOLD
+        - GUARANTEE
+        - LC
+        - INSURANCE
+        - LAND
+        collateral_right_id: *id015
+        status: *id001
+        co_code: *id012
+        collateral_seq_no: *id015
+        collateral_code:
+        - COL001
+        - COL002
+        - COL003
+        - COL004
+        counterparty:
+        - CPTY001
+        - CPTY002
+        - CPTY003
+        - CPTY004
+        csd_owner:
+        - OWN001
+        - OWN002
+        - OWN003
+        - OWN004
+        csd_issuer:
+        - ISS001
+        - ISS002
+        - ISS003
+        - ISS004
+        csd_guarantor:
+        - GUAR001
+        - GUAR002
+        - GUAR003
+        - GUAR004
+      tstg_company:
+        local_country: *id010
+        local_currency: *id004
+        status: *id001
+        record_status: *id001
+        currency_company: *id004
+        currency_mnemonic: *id004
+        language_code:
+        - ENG
+        - FRA
+        - SPA
+        - GER
+        local_region:
+        - REG001
+        - REG002
+        - REG003
+        - REG004
+        time_zone:
+        - UTC
+        - EST
+        - CST
+        - PST
+        financial_com:
+        - FIN001
+        - FIN002
+        - FIN003
+        - FIN004
+        accounting_company:
+        - ACC001
+        - ACC002
+        - ACC003
+        - ACC004
+      tstg_country:
+        record_status: *id001
+        dept_code: *id016
+        reporting_country: *id010
+        nationality: *id010
+        country_name: *id010
+        presentation_code:
+        - CTRY001
+        - CTRY002
+        - CTRY003
+        - CTRY004
+        central_bank_code:
+        - CB001
+        - CB002
+        - CB003
+        - CB004
+        authoriser:
+        - AUTH001
+        - AUTH002
+        - AUTH003
+        - AUTH004
+        auditor_code:
+        - AUD001
+        - AUD002
+        - AUD003
+        - AUD004
+        geographical_block:
+        - GB001
+        - GB002
+        - GB003
+        - GB004
+        business_centre:
+        - BC001
+        - BC002
+        - BC003
+        - BC004
+        idd_prefix_phone:
+        - IDD001
+        - IDD002
+        - IDD003
+        - IDD004
+        fiscal_jurisdiction:
+        - FJ001
+        - FJ002
+        - FJ003
+        - FJ004
+        id_docs:
+        - ID001
+        - ID002
+        - ID003
+        - ID004
+        short_name:
+        - USA
+        - CAN
+        - MEX
+        - BRA
+        inputter:
+        - INPUT001
+        - INPUT002
+        - INPUT003
+        - INPUT004
+      tstg_currency:
+        country_code: *id010
+        currency_market: *id004
+        record_status: *id001
+        cls_ccy: *id004
+        quotation_code:
+        - QUOT001
+        - QUOT002
+        - QUOT003
+        - QUOT004
+        interest_day_basis:
+        - IDB001
+        - IDB002
+        - IDB003
+        - IDB004
+        cut_off_time:
+        - COT001
+        - COT002
+        - COT003
+        - COT004
+      tstg_currency_details:
+        currency_market: *id004
+      tstg_customer:
+        calc_risk_class:
+        - RETAIL
+        - CORPORATE
+        - PREMIUM
+        - PRIVATE
+        customer_status:
+        - LIVE
+        - INACT
+        - PEND
+        nationality: *id010
+        residence: *id010
+        manual_risk_class:
+        - RETAIL
+        - CORPORATE
+        - PREMIUM
+        - PRIVATE
+        customer_type: *id003
+        l_cus_type: *id003
+        business_type: *id003
+        town_country: *id010
+        employment_status: *id001
+        other_officer: *id013
+        pref_channel: *id007
+        l_partyid_type: *id003
+        l_sof_type: *id003
+        status: *id001
+        address_country: *id010
+        l_cus_type_description: *id003
+        address_type: *id003
+        cust_birth_country: *id010
+        crdb_cust_type: *id003
+        title:
+        - Mr
+        - Mrs
+        - Ms
+        - Dr
+        gender:
+        - M
+        - F
+        - O
+        authoriser:
+        - 'YES'
+        - 'NO'
+        target:
+        - INDIVIDUAL
+        - CORPORATE
+        - GOVERNMENT
+        l_seg_lvl2:
+        - RETAIL
+        - CORPORATE
+        - INSTITUTIONAL
+        l_seg_lvl3:
+        - MASS MARKET
+        - PREMIUM
+        - PRIVATE BANKING
+        l_political_exp:
+        - 'YES'
+        - 'NO'
+      tstg_customer_details:
+        town_country: *id010
+        country: *id010
+        employment_status: *id001
+        customer_currency: *id004
+        residence_status: *id001
+        residence_type: *id003
+        comm_type: *id003
+        pref_channel: *id007
+        risk_asset_type: *id003
+        risk_level:
+        - LOW
+        - MEDIUM
+        - HIGH
+        - VERY_HIGH
+        risk_tolerance:
+        - LOW
+        - MEDIUM
+        - HIGH
+        - VERY_HIGH
+        risk_from_date:
+        - LOW
+        - MEDIUM
+        - HIGH
+        - VERY_HIGH
+        spoken_language:
+        - '1'
+        - '2'
+        - '3'
+        rel_id_type: *id003
+        relation_type: *id003
+        l_partyid_type: *id003
+        relation_code:
+        - CUSTOMER
+        - GUARANTOR
+        - BENEFICIARY
+        rel_customer:
+        - PRIMARY
+        - SECONDARY
+        - TERTIARY
+        revers_rel_code:
+        - CUSTOMER
+        - GUARANTOR
+        - BENEFICIARY
+        rel_deliv_opt:
+        - MAIL
+        - EMAIL
+        - PHONE
+        role:
+        - ACCOUNT HOLDER
+        - SIGNATORY
+        - AUTHORIZED PERSON
+      tstg_dates:
+        record_status: *id001
+      tstg_dept_acct_officer:
+        record_status: *id001
+        department:
+        - RETAIL BANKING
+        - CORPORATE BANKING
+        - OPERATIONS
+        area:
+        - FRONT OFFICE
+        - BACK OFFICE
+        - COMPLIANCE
+        dept_parent:
+        - HEAD OFFICE
+        - REGIONAL OFFICE
+        - BRANCH
+      tstg_eb_contract_balances:
+        accr_category: *id017
+        accr_crf_type: *id003
+        coll_ccy: *id004
+        balance_type: *id003
+        bal_type: *id003
+        hvt_flag: *id008
+        ns_update_indicator: *id008
+        collat_right:
+        - 'YES'
+        - 'NO'
+        poss_sign_change:
+        - 'YES'
+        - 'NO'
+        balance_moved:
+        - 'YES'
+        - 'NO'
+        end_of_rec_crf:
+        - 'YES'
+        - 'NO'
+      tstg_eb_contract_balances_details:
+        curr_asset_type: *id003
+        balance_type: *id003
+        accr_category: *id017
+        accr_crf_type: *id003
+        bal_type: *id003
+        collateral: *id015
+        coll_ccy: *id004
+        initiator_type: *id003
+        collateral_right_id: *id015
+        accr_trans_code:
+        - DEBIT
+        - CREDIT
+        - TRANSFER
+        accr_system_id:
+        - CORE BANKING
+        - TRADE FINANCE
+        - CASH MANAGEMENT
+      tstg_eb_queries_answers:
+        original_msg_type: *id003
+        msg_cntl_category: *id017
+        status: *id001
+        originator_bic: *id011
+        iso_msg_type: *id003
+        rej_msg_type: *id003
+        clr_msg_type: *id003
+        orig_msg_type: *id003
+        orig_txn_type: *id003
+        process_indicator: *id008
+        orig_intbk_set_amt_ccy: *id004
+        sender_institution_bic: *id011
+        orig_debtor_agent_bic: *id011
+        orig_creditor_agent_bic: *id011
+        record_status: *id001
+        co_code: *id012
+        dept_code: *id016
+        charges_bic: *id011
+        case_status: *id001
+        modification_status_id: *id001
+        forwarded_to_agent_bic: *id011
+        receiver_bic: *id011
+        creator_type: *id003
+        creator_country_sub_div: *id010
+        creator_country: *id010
+        creator_bic: *id011
+        creator_countryofbirth: *id010
+        originator_country_sub_div: *id010
+        originator_country: *id010
+        originator_countryofbirth: *id010
+        direction:
+        - INWARD
+        - OUTWARD
+        msg_sent_recvd:
+        - SENT
+        - RECEIVED
+        iso_cancel_reason_code:
+        - DUPLICATE
+        - INVALID
+        - EXPIRED
+        cancel_reason_code:
+        - CUSTOMER REQUEST
+        - TECHNICAL ISSUE
+        - COMPLIANCE
+        iso_rej_reason_cde:
+        - INVALID FORMAT
+        - INSUFFICIENT FUNDS
+        - EXPIRED
+        rej_reason_cde:
+        - CUSTOMER REQUEST
+        - TECHNICAL ISSUE
+        - COMPLIANCE
+        iso_clr_reason_code:
+        - SETTLED
+        - REJECTED
+        - PENDING
+      tstg_eb_queries_answers_details:
+        case_type: *id003
+        creator_address_line: *id006
+        originator_address_line: *id006
+        query:
+        - INQUIRY
+        - COMPLAINT
+        - REQUEST
+        answer:
+        - RESPONDED
+        - PENDING
+        - REJECTED
+        send_notice:
+        - 'YES'
+        - 'NO'
+        activity_code:
+        - NEW
+        - UPDATE
+        - DELETE
+      tstg_industry:
+        record_status: *id001
+        high_risk:
+        - High
+        - Low
+        - Medium
+        - Unknown
+        change_sectr:
+        - 'Yes'
+        - 'No'
+        - Pending
+        - Not Applicable
+        authoriser:
+        - Manager
+        - Team Lead
+        - Officer
+        - Admin
+        inputter:
+        - Teller
+        - Customer Service
+        - Back Office
+        - IT Support
+      tstg_por_supplementary_info:
+        batch_fee_hold_indicator: *id008
+        settlement_type: *id003
+        manual_ret_rej_flag: *id008
+        recall_indicator: *id008
+        billing_indicator: *id008
+        simulated_payment_flag: *id008
+        clearing_status_msg_type: *id003
+        clearing_invest_msg_type: *id003
+        cheque_status: *id001
+        match_status: *id001
+        payment_status_msg_ref: *id001
+        source_type: *id003
+        btr_indicator: *id008
+        recall_status: *id001
+        reversal_indicator: *id008
+        fatf_wtr2_skip_flag: *id008
+        return_type: *id003
+        reversed_from:
+        - Original Transaction
+        - Return Transaction
+        - Correction
+        - Reversal
+        clearing_holiday:
+        - 'Yes'
+        - 'No'
+        - Weekend
+        - Public Holiday
+        ret_rej_originated_by:
+        - Bank
+        - Customer
+        - Third Party
+        - Unknown
+        authorised_mandate:
+        - 'Yes'
+        - 'No'
+        - Pending
+        - Not Applicable
+        mandate_auto_registered:
+        - 'Yes'
+        - 'No'
+        - Manual Registration
+        - Not Applicable
+        reserve_with_charges:
+        - 'Yes'
+        - 'No'
+        - Conditional
+        - Not Applicable
+        approval_code:
+        - Approved
+        - Rejected
+        - Pending
+        - Expired
+      tstg_por_supplementary_info_details:
+        main_or_charge_account_type: *id003
+        account_currency: *id004
+        account_type:
+        - CURRENT
+        - SAVINGS
+        - NOSTRO
+        - INTERNAL
+        - LOAN
+        - OVERDRAFT
+        account_status:
+        - LIVE
+        - INACT
+        - CLSD
+        - BLCK
+        - DORM
+        business_line: *id006
+        account_officer: *id013
+      tstg_por_transaction:
+        cheque_status: *id001
+        payment_status_msg_ref: *id001
+        statusdatetime: *id001
+        debitmainaccountcurrencycode: *id004
+        transactioncurrencycode: *id004
+        originatingchannel: *id007
+        outputchannel: *id007
+        statusdate: *id001
+        output_channel: *id007
+        transaction_currency: *id004
+        status: *id001
+        bop_sector: *id005
+        receiverinstitutionbic: *id011
+        co_code: *id012
+        senderinstitutionbic: *id011
+        charge_amount_currency: *id004
+        creditmainaccountcurrencycode: *id004
+        orderingcountry: *id010
+        additional_inf_line: *id006
+        party_account_line: *id006
+        paymentdirection:
+        - Credit
+        - Debit
+        - Transfer
+        - Adjustment
+        ctrbtrindicator:
+        - 'Yes'
+        - 'No'
+        - Conditional
+        - Not Applicable
+        specificweightcode:
+        - High
+        - Low
+        - Medium
+        - Unknown
+        weightcode:
+        - Priority
+        - Normal
+        - Low Priority
+        - Unknown
+        domesticinternational:
+        - Domestic
+        - International
+        - Intra-Regional
+        - Unknown
+        messageformat:
+        - SWIFT
+        - ISO20022
+        - Proprietary
+        - Unknown
+        companyregion:
+        - Head Office
+        - Branch
+        - Subsidiary
+        - Unknown
+      tstg_por_transaction_and_confirmation_details:
+        charge_party_indicator: *id008
+        fee_type: *id003
+        charge_amount_currency: *id004
+        charge_amount_local_ccy: *id004
+        charge_amount_fee_currency: *id004
+        pl_account_currency: *id004
+        parent_child_indicator: *id008
+        tax_indicator: *id008
+        amount_for_tax_local_ccy: *id004
+        amount_for_tax_fee_ccy: *id004
+        tax_amount_local_ccy: *id004
+        statement_line: *id006
+        line_continuity_flag: *id008
+        account_currency: *id004
+        posting_amount_currency: *id004
+        posting_amount_local_ccy: *id004
+        posting_type_flag: *id008
+        currency_market: *id004
+        reversal_indicator: *id008
+        confirmation_type: *id003
+        advice_type: *id003
+        product_name: *id006
+        conf_reversal_indicator: *id008
+        delivery_information_line: *id006
+        mt_type: *id003
+        bic_code: *id011
+      tstg_pp_messagetype:
+        record_status: *id001
+        dept_code: *id016
+        orderentryflag:
+        - 'Yes'
+        - 'No'
+        - Conditional
+        - Not Applicable
+        messagepaymenttypedesc:
+        - Payment
+        - Transfer
+        - Adjustment
+        - Unknown
+        override:
+        - 'Yes'
+        - 'No'
+        - Conditional
+        - Not Applicable
+        authoriser:
+        - Manager
+        - Team Lead
+        - Officer
+        - Admin
+        auditor_code:
+        - Internal Audit
+        - External Audit
+        - Compliance
+        - Unknown
+      tstg_pp_order_entry:
+        status: *id001
+        product: *id006
+        outputchannel: *id007
+        outputchannelimposedflag: *id007
+        transactioncurrency: *id004
+        senderinstitutionbic: *id011
+        receiverinstitutionbic: *id011
+        debitaccountnumberbic: *id011
+        debitaccountcurrency: *id004
+        orderingcountry: *id010
+        creditaccountnumberbic: *id011
+        creditaccountcurrency: *id004
+        beneficiarycountry: *id010
+        debitchargeaccountcurrency: *id004
+        ultdbtbic: *id011
+        ultcrdbic: *id011
+        mndtorgldbtagfininstidbic: *id011
+        instructedcurrency: *id004
+        chequestatus: *id001
+        bop_sector: *id005
+        record_status: *id001
+        co_code: *id012
+        dept_code: *id016
+        direction:
+        - CREDIT
+        - DEBIT
+        - TRANSFER
+        - PAYMENT
+        transfertype:
+        - NORMAL
+        - URGENT
+        - PRIORITY
+        - STANDING
+        incomingmessagetype:
+        - MT103
+        - MT202
+        - MT942
+        - MT950
+        chargeoption:
+        - SHA
+        - OUR
+        - BEN
+        - ALL
+        priority:
+        - NORMAL
+        - HIGH
+        - LOW
+        - URGENT
+        orderpartytagoption:
+        - DEBT
+        - CRED
+        - INTM
+        - RECV
+      tstg_pp_order_entry_details:
+        debitchargecurrency: *id004
+        creditchargecurrency: *id004
+        regrepcountrycd: *id010
+        regrepauthoritycountry: *id010
+        regrepamountcurrency: *id004
+        taxcurrency: *id004
+        m:
+        - MULTICURRENCY
+        - SINGLECURRENCY
+        - MULTIBENEFICIARY
+        - SINGLEBENEFICIARY
+        s:
+        - STANDARD
+        - URGENT
+        - PRIORITY
+        - NORMAL
+        debitchargecomponent:
+        - DEBIT
+        - CREDIT
+        - BOTH
+        - NONE
+        creditchargecomponent:
+        - CREDIT
+        - DEBIT
+        - BOTH
+        - NONE
+        instructioncode:
+        - PAY
+        - COLL
+        - TRF
+        - STO
+      tstg_pp_statuscode:
+        statusdescription: *id001
+        gpistatus: *id001
+        csrstatus: *id001
+        csrstatusdescription: *id001
+        record_status: *id001
+        dept_code: *id016
+        reasoncode:
+        - AUTH
+        - REJE
+        - CANL
+        - COMP
+        override:
+        - 'YES'
+        - 'NO'
+        - PARTIAL
+        - FULL
+        authoriser:
+        - MANUAL
+        - AUTOMATIC
+        - SYSTEM
+        - USER
+      tstg_ppt_receivedbulkdetails:
+        settlementcurrency: *id004
+        clearingcurrencyrejectedtrx: *id004
+        clearingstatusoriginalbulk: *id001
+        statuscodereceivedbulk: *id001
+        bulkinstrgagfininstidbic: *id011
+        bulkinstrdagfininstidbic: *id011
+        record_status: *id001
+        co_code: *id012
+        dept_code: *id016
+        clearingreasonoriginatorbic: *id011
+        custstatusrptonsettlement: *id001
+        customerstatusreportrejects: *id001
+        customerstatusreportreturns: *id001
+        statusreportmessagetype: *id001
+        forwardclearingstatusreport: *id001
+        bulkformat:
+        - XML
+        - CSV
+        - FIX
+        - MT
+        bulkpaymenttype:
+        - CREDIT
+        - DEBIT
+        - TRANSFER
+        - PAYMENT
+        clearingreasoncode:
+        - AC01
+        - AC02
+        - AC03
+        - AC04
+        clearingreasoncodeproprietary:
+        - CR01
+        - CR02
+        - CR03
+        - CR04
+        errorcode:
+        - EC01
+        - EC02
+        - EC03
+        - EC04
+      tstg_re_stat_line_cont_details:
+        asset_type: *id003
+        profit_ccy: *id004
+        efz_co_code:
+        - T24
+        - EFZ
+        - CORE
+        - BANK
+        recv_period:
+        - DAILY
+        - WEEKLY
+        - MONTHLY
+        - QUARTERLY
+        recv_line_no:
+        - LINE1
+        - LINE2
+        - LINE3
+        - LINE4
+        asst_consol_key:
+        - KEY1
+        - KEY2
+        - KEY3
+        - KEY4
+        mat_range:
+        - RANGE1
+        - RANGE2
+        - RANGE3
+        - RANGE4
+        prft_consol_key:
+        - KEY1
+        - KEY2
+        - KEY3
+        - KEY4
+        profit_sign:
+        - POSITIVE
+        - NEGATIVE
+        - NEUTRAL
+        - ZERO
+      tstg_sector:
+        record_status: *id001
+        risk_expo_type: *id003
+        short_description:
+        - BANK
+        - FIN
+        - INSU
+        - INVE
+      tstg_stmt_entry:
+        product_category: *id017
+        pl_category: *id017
+        position_type: *id003
+        csd_channelid: *id007
+        repayment_type: *id003
+        crf_type: *id003
+        crf_currency: *id004
+        dept_code: *id016
+        currency_market: *id004
+        original_ccy: *id004
+        record_status: *id001
+        deal_ccy: *id004
+        dealer_desk:
+        - FXDESK
+        - MMDESK
+        - TBDESK
+        - CMDESK
+        liquidation_mode:
+        - C
+        - D
+        - R
+        - T
+        counterparty:
+        - CITI
+        - HSBC
+        - JPM
+        - BOA
+      tstg_stmt_entry_details:
+        override_flag: *id008
+        repayment_type: *id003
+        efz_co_code:
+        - EF001
+        - EF002
+        - EF003
+        - EF004
+        bank_sort_cde:
+        - '01001'
+        - '02002'
+        - '03003'
+        - '04004'
+        cheque_ind:
+        - Y
+        - N
+      tstg_transaction:
+        transaction_type: *id018
+        debit_credit_ind:
+        - D
+        - C
+        chq_type: *id003
+        narr_type: *id003
+        swift_narrative: *id011
+        record_status: *id001
+        initiation:
+        - C
+        - D
+        - I
+        - M
+        cheque_ind:
+        - Y
+        - N
+        charge_key:
+        - CH001
+        - CH002
+        - CH003
+        - CH004
+        combine_prod_cat:
+        - CAT1
+        - CAT2
+        - CAT3
+        - CAT4
+      tstg_ac_locked_events_details:
+        override:
+        - 'Yes'
+        - 'No'
+        - Pending
+        - Approved
+        inputter:
+        - Bank
+        - Customer
+        - Third Party
+        - System
+      tstg_company_details:
+        pgm_autom_id:
+        - AUTO001
+        - AUTO002
+        - AUTO003
+        - AUTO004
+        spcl_cust_file:
+        - CUST001
+        - CUST002
+        - CUST003
+        - CUST004
+        spcl_cust_com:
+        - COM001
+        - COM002
+        - COM003
+        - COM004
+        spcl_fin_file:
+        - FIN001
+        - FIN002
+        - FIN003
+        - FIN004
+        spcl_fin_com:
+        - COM001
+        - COM002
+        - COM003
+        - COM004
+        applications:
+        - APP001
+        - APP002
+        - APP003
+        - APP004
+        acc_bkno_prefix:
+        - ACC001
+        - ACC002
+        - ACC003
+        - ACC004
+        inputter:
+        - INPUT001
+        - INPUT002
+        - INPUT003
+        - INPUT004
+        efz_co_code:
+        - CO001
+        - CO002
+        - CO003
+        - CO004
+      tstg_por_transaction_and_confirmation:
+        our_reference:
+        - Transaction ID
+        - Confirmation ID
+        - Message ID
+        - Unknown
+      tstg_pp_statuscode_details:
+        efz_co_code:
+        - T24
+        - EFZ
+        - CORE
+        - BANK
+      tstg_ppt_receivedbulkdetails_details:
+        efz_co_code:
+        - T24
+        - EFZ
+        - CORE
+        - BANK
